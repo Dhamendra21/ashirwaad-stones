@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw 3D & Texture Archives
+*.zip
+*.sbsar
+public/assets/_3d-maps/

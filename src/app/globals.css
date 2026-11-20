@@ -1,26 +1,67 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@source "../**/*.{js,ts,jsx,tsx}";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-plus-jakarta);
+  --color-canvas: #F6F5F2;
+  --color-obsidian: #141413;
+  --color-card-light: #EDEAE4;
+  --color-card-dark: #1E1E1C;
+  --color-ink: #1C1C1A;
+  --color-ink-light: #F6F5F2;
+  --color-taupe: #6E6A63;
+  --color-brass: #B89758;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: auto;
+  width: 100%;
+  overflow-x: hidden;
 }
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+
+.cursor-follower {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(184,151,88,0.15);
+  border: 1px solid rgba(184,151,88,0.5);
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+  display: flex; align-items: center; justify-content: center;
+}
+.cursor-follower.pill {
+  width: 90px; height: 32px;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-brass);
+}
+
+@keyframes hotspot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184,151,88,0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(184,151,88,0); }
+}
+.hotspot-pulse { animation: hotspot-pulse 2s ease-in-out infinite; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(184,151,88,0.4); border-radius: 2px; }
